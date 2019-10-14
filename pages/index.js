@@ -9,9 +9,9 @@ const Home = () => {
   const [localTiming, setLocalTiming] = useState(null);
 
   useEffect(() => {
-    const start = performance.now();
-
     async function getElephant() {
+      const start = performance.now();
+
       const res = await fetch('/api/elephant');
       const json = await res.json();
 
