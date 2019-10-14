@@ -20,9 +20,7 @@ const Home = () => {
 
       const localTiming = performance.now() - start;
 
-      setLocalTiming(
-        `${Math.round(localTiming / 1000)}s | ${localTiming}ms`
-      );
+      setLocalTiming(localTiming + 'ms');
     }
 
     getElephant();
@@ -31,16 +29,40 @@ const Home = () => {
   return (
     <div>
       <div>
-        <h2>ElephantSQL timing:</h2>
-        {
-          time
-            ? <span><b>{time}</b></span>
-            : <span className="loading"></span>
-        }
+        <table>
+          <thead>
+          <tr>
+            <td>
+              Route
+            </td>
+            <td>
+              Request timings
+            </td>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td>
+              Comp - Server - Comp
+            </td>
+            <td>
+              {localTiming}
+            </td>
+          </tr>
+          <tr>
+            <td>
+              Server - Elephant - Server
+            </td>
+            <td>
+              {time}
+            </td>
+          </tr>
+          </tbody>
+        </table>
 
         <br/>
 
-        <h2>Result:</h2>
+        <h2>Query result:</h2>
         {
           list
             ? <ul>{
@@ -50,16 +72,21 @@ const Home = () => {
         }
 
         <br/>
-
-        <h2>HTTP request timing:</h2>
-        {
-          localTiming
-            ? <span><b>{localTiming}</b></span>
-            : <span className="loading"></span>
-        }
       </div>
 
       <style jsx>{`
+        table {
+          width: 700px;
+        }
+        
+        thead {
+          font-weight: 700;
+        }
+        
+        td {
+          border-bottom: 1px solid #eee;
+        }
+      
         .hero {
           width: 100%;
           color: #333;

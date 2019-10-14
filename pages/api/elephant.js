@@ -19,7 +19,7 @@ export default async (req, res) => {
     res.json({
       statusCode: 200,
       data: {
-        time: `${end[0]}s | ${end[1]}ms`,
+        time: `${end[1] / 1000000}ms`,
         list: sqlRes.rows
       }
     });
