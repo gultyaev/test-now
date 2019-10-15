@@ -8,10 +8,12 @@ export default async (req, res) => {
     if (err) {
       console.error(err);
 
-      sqlRes.json({
+      res.json({
         statusCode: 500,
         message: 'Something went wrong'
-      })
+      });
+
+      client.end();
     }
 
     const end = process.hrtime(start);
