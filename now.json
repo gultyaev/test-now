@@ -1,10 +1,12 @@
 {
   "env": {
-    "PG_URL": "@pg_url"
+    "PG_URL": "@pg_url",
+    "PG_URL_CALIFORNIA": "@pg_url_california"
   },
   "build": {
     "env": {
-      "PG_URL": "@pg_url"
+      "PG_URL": "@pg_url",
+      "PG_URL_CALIFORNIA": "@pg_url_california"
     }
   }
 }
