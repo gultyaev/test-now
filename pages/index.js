@@ -48,24 +48,6 @@ const Home = () => {
     getFromVirginia();
   }, []);
 
-  useEffect(() => {
-    async function getElephant() {
-      const start = performance.now();
-
-      const res = await fetch('/api/elephant');
-      const json = await res.json();
-
-      setTime(json.data.time);
-      setList(json.data.list);
-
-      const localTiming = performance.now() - start;
-
-      setLocalTiming(localTiming + 'ms');
-    }
-
-    getElephant();
-  }, []);
-
   return (
     <div>
       <div>
