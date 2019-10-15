@@ -133,11 +133,22 @@ const Home = () => {
 
         <br/>
 
-        <h2>Query result:</h2>
+        <h2>Query result for Western Europe:</h2>
         {
           list
             ? <ul>{
               list.map((e, i) => <li key={i}>{e.name}</li>)
+            }</ul>
+            : <span className="loading"></span>
+        }
+
+        <br/>
+
+        <h2>Query result for Northern Virginia:</h2>
+        {
+          listV
+            ? <ul>{
+              listV.map((e, i) => <li key={i}>{e.username}</li>)
             }</ul>
             : <span className="loading"></span>
         }
