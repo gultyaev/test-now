@@ -8,6 +8,46 @@ const Home = () => {
   const [list, setList] = useState(null);
   const [localTiming, setLocalTiming] = useState(null);
 
+  const [timeV, setTimeV] = useState(null);
+  const [listV, setListV] = useState(null);
+  const [localTimingV, setLocalTimingV] = useState(null);
+
+  useEffect(() => {
+    async function getElephant() {
+      const start = performance.now();
+
+      const res = await fetch('/api/elephant');
+      const json = await res.json();
+
+      setTime(json.data.time);
+      setList(json.data.list);
+
+      const localTiming = performance.now() - start;
+
+      setLocalTiming(localTiming + 'ms');
+    }
+
+    getElephant();
+  }, []);
+
+  useEffect(() => {
+    async function getFromVirginia() {
+      const start = performance.now();
+
+      const res = await fetch('/api/elephant-california');
+      const json = await res.json();
+
+      setTimeV(json.data.time);
+      setListV(json.data.list);
+
+      const localTiming = performance.now() - start;
+
+      setLocalTimingV(localTiming + 'ms');
+    }
+
+    getFromVirginia();
+  }, []);
+
   useEffect(() => {
     async function getElephant() {
       const start = performance.now();
@@ -33,6 +73,9 @@ const Home = () => {
           <thead>
           <tr>
             <td>
+              DB Location
+            </td>
+            <td>
               Route
             </td>
             <td>
@@ -43,6 +86,9 @@ const Home = () => {
           <tbody>
           <tr>
             <td>
+              Western Europe
+            </td>
+            <td>
               Comp - Server - Comp
             </td>
             <td>
@@ -51,10 +97,35 @@ const Home = () => {
           </tr>
           <tr>
             <td>
+              Western Europe
+            </td>
+            <td>
               Server - Elephant - Server
             </td>
             <td>
               {time}
+            </td>
+          </tr>
+          <tr>
+            <td>
+              Northern Virginia
+            </td>
+            <td>
+              Comp - Server - Comp
+            </td>
+            <td>
+              {localTimingV}
+            </td>
+          </tr>
+          <tr>
+            <td>
+              Northern Virginia
+            </td>
+            <td>
+              Server - Elephant - Server
+            </td>
+            <td>
+              {timeV}
             </td>
           </tr>
           </tbody>
